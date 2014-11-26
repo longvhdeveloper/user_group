@@ -1,0 +1,24 @@
+<h1>Meetings</h1>
+
+<%= flash_notice %>
+
+<div class="meeting_list">
+  <h2>Upcomming Meetings</h2>
+  <ul>
+    <% @upcomming_meetings.each do |meeting| %>
+      <li><%= link_to(h(meeting.name), meeting_path(meeting)) %></li>
+    <% end %>
+    <%= no_meeting(@upcomming_meetings) %>
+  </ul>
+  <p class="add"><%= link_to('Add metting', new_meeting_path) %></p>
+</div>
+
+<div class="meeting_list">
+  <h2>Past Meeting</h2>
+  <ul>
+    <% @pastcomming_mettings.each do |meeting| %>
+        <li><%= link_to(h(meeting.name), meeting_path(meeting)) %></li>
+    <% end %>
+  </ul>
+</div>
+

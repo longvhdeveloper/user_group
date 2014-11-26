@@ -1,0 +1,17 @@
+<h1>
+  <%= link_to "Users", users_path %> &rarr; Member Profile
+</h1>
+
+<%= flash_notice %>
+
+<div class="details">
+  <%= get_image_profile(@user) %>
+  <h2><%=h(@user.name)%><%= image_for_admin_status(@user) %></h2>
+  <p class="email"><%= mail_to h(@user.email) %></p>
+  <p><%= h(@user.profile) %></p>
+</div>
+
+<div class="modify">
+  <%= link_to 'Edit', edit_user_path(@user) %> |
+  <%= link_to 'Destroy', user_path(@user), :confirm => "Are you sure ?", :method => :delete %> |
+</div>

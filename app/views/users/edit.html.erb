@@ -1,0 +1,30 @@
+<h1>Edit User</h1>
+<div class="form">
+  <%= error_messages_for :user %>
+  <fieldset>
+    <legend>Edit User Details</legend>
+    <%= form_for(@user) do |f| %>
+    <div>
+      <%= f.label :name %><br/>
+      <%= f.text_field :name, {:size => 35, :class => "text"} %>
+    </div>
+    <div>
+      <%= f.label :email %><br/>
+      <%= f.text_field :email , {:size => 35, :class => "text"} %>
+    </div>
+    <div>
+      <%= f.label :profile %><br/>
+      <%= f.text_area :profile, :rows => 4, :class => 'text' %>
+    </div>
+    <div>
+      Administrator :
+      <%= f.radio_button :is_admin , true, :class => "radio" %>
+      <%= f.label :is_admin , 'Yes' %>
+      <%= f.radio_button :is_admin , false, :class => "radio" %>
+      <%= f.label :is_admin, 'No' %>
+    </div>
+    <%= f.submit 'Save', :class => "submit" %> &nbsp;
+    <%= link_to "Cancel", users_path %>
+    <% end %>
+  </fieldset>
+</div>

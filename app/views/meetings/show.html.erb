@@ -1,0 +1,28 @@
+<h1><%= link_to "Meetings", meetings_url %>
+ &rarr; <%= h @meeting.name %>
+</h1>
+
+<%= flash_notice %>
+
+<div class="details">
+  <dl>
+    <dt>When :</dt><dd><%= @meeting.name %> @ 7:00pm </dd>
+    <dt>Where :</dt><dd><%= h(@meeting.location) %></dd>
+    <dt>Agenda :</dt><dd><%= h(@meeting.description) %></dd>
+  </dl>
+
+  <h2>Presentation</h2>
+  <% unless @meeting.presentations.empty? %>
+    <p id="no_presentations">
+      There are no presentations for this meeting
+    </p>
+  <% end %>
+  <p class="add">
+    <%= link_to "Add presentation", new_meeting_presentation_path(@meeting) %>
+  </p>
+
+  <p class="modify">
+    <%= link_to('Edit', edit_meeting_path(@meeting)) %> |
+    <%= link_to('Delete', @meeting, :confirm => "Are you sure ?", :method => :delete) %>
+  </p>
+</div>

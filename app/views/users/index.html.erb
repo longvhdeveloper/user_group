@@ -1,0 +1,17 @@
+<h1>Members</h1>
+<%= flash_notice %>
+
+<div class="user_list">
+  <ul>
+    <% @users.each do |user| %>
+    <li class="<%= cycle('shade', '') %>">
+      <%= link_to h(user.name), user_path(user) %>
+      <% if user.is_admin %>
+        <%= image_for_admin_status(user) %>
+      <% end %><br/>
+
+      <%= content_tag 'span', h(user.email) %>
+    </li>
+    <% end %>
+  </ul>
+</div>

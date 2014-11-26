@@ -1,0 +1,18 @@
+<h1>Login</h1>
+<%= flash_notice %>
+<div class="form">
+  <fieldset>
+    <legend>Enter email / password</legend>
+    <%= form_tag :action => 'create' do %>
+      <div>
+        <%=label(:email, 'Email') %><br/>
+        <%= text_field_tag(:email, session[:email], :class => "short") %>
+      </div>
+      <div>
+        <%=label(:password, 'Password') %><br/>
+        <%= password_field_tag(:password, session[:password],:class => 'short')%>
+      </div>
+      <%= submit_tag 'Login' %>
+    <% end %>
+  </fieldset>
+</div>

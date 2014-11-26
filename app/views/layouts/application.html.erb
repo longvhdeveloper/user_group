@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TucsonRails <%= ": #{@title}" unless @title.blank? %></title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'screen', :media => "screen" %>
+  <%= csrf_meta_tags %>
+</head>
+<body class="<%= controller_name %>">
+<div id="wrapper">
+  <div id="logo">
+    <%= image_tag "/images/logo.gif", :alt => "Tuscon Rails" %>
+  </div>
+
+  <div id="nav">
+    <ul>
+      <li id="nav_meetings">
+        <%= link_to "Meetings", meetings_path %>
+      </li>
+      <li id="nav_users">
+        <%= link_to "Members", new_user_path %>
+      </li>
+    </ul>
+    <div>
+      <% if logged_in? %>
+        <%= link_to "Your profile", user_path(@current_user) %>
+        &nbsp;
+        <%= link_to "Logout", logout_path %>
+      <% else %>
+        <%= link_to "Join us", new_user_path %>
+        &nbsp;
+        <%= link_to "Login", new_session_path %>
+      <% end %>
+    </div>
+  </div>
+
+  <div id="content">
+    <%= yield %>
+  </div>
+
+  <div id="footer">&nbsp;</div>
+</div>
+
+</body>
+</html>

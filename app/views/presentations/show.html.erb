@@ -1,0 +1,17 @@
+<h2>Presentations</h2>
+<ul id="presentations">
+  <% @meetings.presentations.each do |presentation| %>
+    <li id="presentation_<%=h(presentation.id) %>">
+      <h3>
+        <%= h(presentation.title) %>&nbsp;
+        <span class="modify">
+          (<%= link_to "Edit", edit_meeting_presentation_path(presentation) %> |
+          <%= link_to "Destroy", edit_meeting_presentation_path(presentation),
+                      :confirm => "Are you sure", :method => :delete %>)
+        </span>
+      </h3>
+      <p class="user">By : <%=h presentation.user.name %></p>
+      <p class="description"><%=h presentation.description %></p>
+    </li>
+  <% end %>
+</ul>

@@ -1,0 +1,26 @@
+<h1>Register To Become Member</h1>
+<div class="form">
+  <%= error_messages_for :user%>
+  <fieldset>
+    <legend>Create TucsonRails Account</legend>
+    <%= form_for(@user) do |f| %>
+      <div>
+        <%= f.label :name %><br/>
+        <%= f.text_field :name, :class => "short" %>
+      </div>
+      <div>
+        <%= f.label :email %><br/>
+        <%= f.text_field :email, :class => "short" %>
+      </div>
+      <div>
+        <%= f.label :password %><br/>
+        <%= f.password_field :password, :class => "short" %>
+      </div>
+      <div>
+        <%= f.label :password_confirmation %><br/>
+        <%= f.password_field :password_confirmation, :class => "short" %>
+      </div>
+      <%= f.submit 'Register' %>
+    <% end %>
+  </fieldset>
+</div>

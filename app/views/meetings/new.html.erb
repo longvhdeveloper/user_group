@@ -1,0 +1,16 @@
+<h1>Create a New Meeting</h1>
+<div class="form">
+  <%= error_messages_for :meeting%>
+
+  <fieldset>
+    <legend>Enter Meeting Details</legend>
+    <%= form_for(@meeting) do |f| %>
+
+      <%= render :partial => 'form', :locals => {:f => f} %>
+
+      <%= f.submit "Create", :class => "submit" %> &nbsp;
+      <%= link_to('Cancel', meetings_path) %>
+
+    <% end %>
+  </fieldset>
+</div>
