@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root 'homepage#index'
+
   resources :meetings do
     resources :presentations
   end

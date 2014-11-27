@@ -23,7 +23,16 @@ class Meeting < ActiveRecord::Base
   validates :meet_on, :presence => true
   validates :location, :presence => true,
                       :length => {minimum: 4}
-                      
+
+
+  def presentations_list
+    unless presentations.empty?
+      presentations.collect { |p| p.title }.join(', ')
+    else
+      'No presentations'
+    end
+  end
+
 
   # formatted name base on date
   def name

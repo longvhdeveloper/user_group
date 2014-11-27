@@ -10,8 +10,11 @@
   <p class="email"><%= mail_to h(@user.email) %></p>
   <p><%= h(@user.profile) %></p>
 </div>
-
+<% if is_admin? %>
 <div class="modify">
   <%= link_to 'Edit', edit_user_path(@user) %> |
   <%= link_to 'Destroy', user_path(@user), :confirm => "Are you sure ?", :method => :delete %> |
 </div>
+<% elsif logged_in? && @user.id == @current_user.id %>
+    <%= link_to 'Edit your profile', edit_user_path(@user) %>
+<% end %>

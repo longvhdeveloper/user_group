@@ -1,2 +1,12 @@
-<h1>Presentations#edit</h1>
-<p>Find me in app/views/presentations/edit.html.erb</p>
+<h1>Edit Presentation</h1>
+<div class="form">
+  <%= error_messages_for :presentation %>
+  <fieldset>
+    <legend>Enter Presentation Details</legend>
+    <%= form_for @presentation, :url => {:action => :create, :meeting_id => @meeting.id, :id => @presentation.id} do |f| %>
+      <%= render :partial => 'form', :locals => {:f => f} %>
+      <%= f.submit 'Submit', :class => 'submit' %> &nbsp;
+      <%= link_to 'cancel', meeting_path(@meeting) %>
+    <% end %>
+  </fieldset>
+</div>

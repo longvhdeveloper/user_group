@@ -12,17 +12,20 @@
   </dl>
 
   <h2>Presentation</h2>
-  <% unless @meeting.presentations.empty? %>
+  <% if @meeting.presentations.size == 0 %>
     <p id="no_presentations">
       There are no presentations for this meeting
     </p>
   <% end %>
+  <% if is_admin? %>
   <p class="add">
     <%= link_to "Add presentation", new_meeting_presentation_path(@meeting) %>
   </p>
-
+  <% end %>
+  <% if is_admin? %>
   <p class="modify">
     <%= link_to('Edit', edit_meeting_path(@meeting)) %> |
     <%= link_to('Delete', @meeting, :confirm => "Are you sure ?", :method => :delete) %>
   </p>
+  <% end %>
 </div>

@@ -1,6 +1,7 @@
 <h1>Members</h1>
 <%= flash_notice %>
 
+<% cache do %>
 <div class="user_list">
   <ul>
     <% @users.each do |user| %>
@@ -15,3 +16,4 @@
     <% end %>
   </ul>
 </div>
+<% end %>

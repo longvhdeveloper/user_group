@@ -1,9 +1,12 @@
 class MeetingsController < ApplicationController
 
   before_filter :set_meeting, except: [:index, :new, :create]
+  before_filter :admin_required, except: [:index, :show]
 
   def index
-    @upcomming_meetings = Meeting.upcomming_meetings
+    unless read_fragment(:admin => is_admin?)
+      @upcomming_meetings = Meeting.upcomming_meetings
+    end
     @pastcomming_mettings = Meeting.pastcomming_meetings
   end
 
@@ -39,7 +42,10 @@ class MeetingsController < ApplicationController
   end
 
   def destroy
-
+    @meeting.destroy
+    expire_fragment(/\/meetings./)
+    flash[:notice] = "Meeting successfully destroyed"
+    redirect_to meetings_path
   end
   private
 

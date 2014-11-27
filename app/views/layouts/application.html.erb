@@ -10,11 +10,14 @@
 <body class="<%= controller_name %>">
 <div id="wrapper">
   <div id="logo">
-    <%= image_tag "/images/logo.gif", :alt => "Tuscon Rails" %>
+    <%= link_to_unless_current(image_tag("logo.gif", :alt => "Tuscon Rails"), root_path) %>
   </div>
 
   <div id="nav">
     <ul>
+      <li id="nav_home">
+        <%=link_to "Home", root_path %>
+      </li>
       <li id="nav_meetings">
         <%= link_to "Meetings", meetings_path %>
       </li>

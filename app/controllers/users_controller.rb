@@ -1,7 +1,12 @@
 class UsersController < ApplicationController
   before_filter :set_user, except: [:index, :new, :create]
+  before_filter :login_required, :only => [:edit, :update]
+  before_filter :admin_required, :only => [:destroy]
+  before_filter :confirm_user_owns_record, :only => [:edit, :update]
   def index
-    @users = User.all.order("name")
+    unless read_fragment({})
+      @users = User.all.order("name")
+    end
   end
 
   def show
@@ -38,6 +43,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
+    expire_fragment :controller => "users", :action => "index"
     flash[:notice] = "User successfully destroyed"
     redirect_to users_path
   end
@@ -45,6 +51,13 @@ class UsersController < ApplicationController
   private
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def confirm_user_owns_record
+    return if is_admin?
+    if @user.id != @current_user.id
+      redirect_to user_path(@current_user)
+    end
   end
 
   def user_params
